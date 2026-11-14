@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="color-scheme" content="light">
+  <title>Student Task Manager</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="task-core.js" defer></script>
+  <script src="renderer.js" defer></script>
+</head>
+<body>
+  <main class="app">
+    <header>
+      <p class="tag">STUDENT PRODUCTIVITY</p>
+      <h1>My Task Manager</h1>
+      <p class="subtitle">Keep your study tasks organized.</p>
+    </header>
+
+    <form id="taskForm" class="add-area" autocomplete="off">
+      <label class="visually-hidden" for="taskInput">Task description</label>
+      <input
+        id="taskInput"
+        name="task"
+        type="text"
+        placeholder="Enter a task..."
+        maxlength="100"
+        required
+        aria-describedby="message"
+      >
+      <button id="addButton" type="submit">Add Task</button>
+    </form>
+
+    <p id="message" class="message" role="status" aria-live="polite" aria-atomic="true"></p>
+
+    <section class="task-section" aria-labelledby="taskHeading">
+      <div class="section-heading">
+        <h2 id="taskHeading">My Tasks</h2>
+        <span id="taskCount" aria-live="polite">0 remaining · 0 total</span>
+      </div>
+      <ul id="taskList" aria-label="Your study tasks"></ul>
+      <p id="emptyMessage" class="empty">No tasks yet. Add your first task above.</p>
+    </section>
+
+    <footer>Made for managing everyday study tasks.</footer>
+  </main>
+</body>
+</html>

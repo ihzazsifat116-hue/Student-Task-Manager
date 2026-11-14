@@ -1,0 +1,67 @@
+{
+  "name": "student-task-manager",
+  "version": "1.2.0",
+  "description": "A secure, beginner-friendly Electron task manager for students",
+  "productName": "Student Task Manager",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test",
+    "pack:win": "electron-builder --win --dir",
+    "build:win": "electron-builder --win nsis",
+    "build:win:portable": "electron-builder --win portable",
+    "build:win:all": "electron-builder --win nsis portable"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "devDependencies": {
+    "electron": "^45.3.1",
+    "electron-builder": "^26.8.1"
+  },
+  "build": {
+    "appId": "com.studenttaskmanager.app",
+    "productName": "Student Task Manager",
+    "asar": true,
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "index.html",
+      "renderer.js",
+      "style.css",
+      "task-core.js",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        },
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        }
+      ],
+      "artifactName": "Student-Task-Manager-${version}-${arch}.${ext}",
+      "executableName": "Student Task Manager"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Student Task Manager",
+      "deleteAppDataOnUninstall": false,
+      "runAfterFinish": true,
+      "displayLanguageSelector": false
+    },
+    "portable": {
+      "artifactName": "Student-Task-Manager-${version}-portable-${arch}.${ext}"
+    }
+  }
+}

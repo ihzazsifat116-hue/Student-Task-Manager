@@ -1,0 +1,34 @@
+name: Build Windows installers
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: read
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: npm test
+      - name: Build Windows EXE installer and portable app
+        run: npm run build:win:all
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: student-task-manager-windows
+          path: dist/*.exe
+          if-no-files-found: error
+          retention-days: 14
